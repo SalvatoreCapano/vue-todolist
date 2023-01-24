@@ -19,8 +19,13 @@
 </head>
 <body>
     
+    <div id="app">
 
-    
+        <ul class="taskList">
+            <li class="task" v-for="task in taskList" :class="(task.done) ? ('done') : ('')">{{ task.text }}</li>
+        </ul>
+
+    </div> <!-- /app-->
 
     <!-- Script -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
