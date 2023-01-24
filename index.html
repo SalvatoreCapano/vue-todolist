@@ -22,7 +22,16 @@
     <div id="app">
 
         <ul class="taskList">
-            <li class="task" v-for="task in taskList" :class="(task.done) ? ('done') : ('')">{{ task.text }}</li>
+            <li class="task" v-for="(task, index) in taskList" :class="(task.done) ? ('done') : ('')">
+                
+                <span class="taskText">
+                    {{ task.text }}
+                </span>
+
+                <span class="deleteBtn" @click="removeTask(index)">
+                    <i class="fa-solid fa-xmark"></i>
+                </span>
+            </li>
         </ul>
 
     </div> <!-- /app-->

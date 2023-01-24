@@ -25,7 +25,11 @@ createApp({
         }
     },
     methods: {
+        removeTask (i) {
+            console.log ("Rimosso Task", `"${this.taskList[i].text}"`);
 
+            this.taskList.splice (i, 1);
+        }
     }
 
 }).mount("#app");
