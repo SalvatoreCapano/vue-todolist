@@ -12,7 +12,7 @@
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -21,26 +21,59 @@
     
     <div id="app">
 
-        <form action="" @submit.prevent="addTask()">
+        <main class="container">
 
-            <input v-model="newTask" type="text" placeholder="Fare la spesa, finire i compiti, consegnare il progetto...">
+            <header>
+                <div class="logoContainer">
+                    <a href="#">
+                        <img src="img/logo.png" alt="Boolean">
+                    </a>
+                </div>
 
-            <button >Aggiungi</button>
+                <h1 class="mainTitle">Vue ToDo List</h1>
+            </header>
 
-        </form>
 
-        <ul class="taskList">
-            <li class="task" v-for="(task, index) in taskList" :class="(task.done) ? ('done') : ('')">
-                
-                <span class="taskText">
-                    {{ task.text }}
-                </span>
+            <div class="inputContainer">
 
-                <span class="deleteBtn" @click="removeTask(index)">
-                    <i class="fa-solid fa-xmark"></i>
-                </span>
-            </li>
-        </ul>
+                <form action="" @submit.prevent="addTask()">
+    
+                    <input v-model="newTask" type="text" placeholder="Fare la spesa, finire i compiti, consegnare il progetto..." :class="(newtTaskNotValid) ? ('error') : ('')">
+    
+                    <button>Aggiungi</button>
+    
+                </form>
+    
+            </div> <!-- /inputContainer-->
+    
+    
+            <div class="listContainer" v-if="(taskList.length > 0)">
+    
+                <h2>Todo List</h2>
+
+                <ul class="taskList">
+                    <li class="task" v-for="(task, index) in taskList" :class="(task.done) ? ('done') : ('')">
+                        
+                        <span class="taskText" @click="toggleDone(index)">
+                            {{ task.text }}
+                        </span>
+        
+                        <button class="deleteBtn" @click="removeTask(index)">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+
+                    </li> <!-- /task-->
+                </ul> <!-- /taskList-->
+    
+            </div> <!-- /listContainer-->
+
+            <div class="noTasksMessage" v-else>
+
+                <span>Nessun task presente.</span>
+
+            </div> <!-- /noTasksMessage-->
+
+        </main>
 
     </div> <!-- /app-->
 

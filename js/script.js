@@ -5,6 +5,7 @@ createApp({
     data() {
         return {
             newTask: "",
+            newtTaskNotValid: false,
             taskList: [
                 {
                     text: "Completare Milestone 1",
@@ -34,14 +35,24 @@ createApp({
         addTask() {
             console.log (`Hai inserito: ${this.newTask}`);
 
-            this.taskList.push (
-                {
-                    text: this.newTask,
-                    done: false
-                }
-            );
-
-            this.newTask = "";
-        }
+            if ((this.newTask == "") || (this.newTask.length < 5)) {
+                this.newtTaskNotValid = true;
+                console.log (`Task non valido. Riprova.`);
+            }
+            else {
+                this.newtTaskNotValid = false;
+                this.taskList.push (
+                    {
+                        text: this.newTask,
+                        done: false
+                    }
+                );
+    
+                this.newTask = "";
+            }
+        },
+        toggleDone (i) {
+            this.taskList[i].done = !this.taskList[i].done;
+        },
     }
 }).mount("#app");
