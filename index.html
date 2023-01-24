@@ -21,6 +21,14 @@
     
     <div id="app">
 
+        <form action="" @submit.prevent="addTask()">
+
+            <input v-model="newTask" type="text" placeholder="Fare la spesa, finire i compiti, consegnare il progetto...">
+
+            <button >Aggiungi</button>
+
+        </form>
+
         <ul class="taskList">
             <li class="task" v-for="(task, index) in taskList" :class="(task.done) ? ('done') : ('')">
                 

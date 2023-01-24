@@ -4,6 +4,7 @@ createApp({
 
     data() {
         return {
+            newTask: "",
             taskList: [
                 {
                     text: "Completare Milestone 1",
@@ -26,10 +27,21 @@ createApp({
     },
     methods: {
         removeTask (i) {
-            console.log ("Rimosso Task", `"${this.taskList[i].text}"`);
+            console.log (`Rimosso Task "${this.taskList[i].text}"`);
 
             this.taskList.splice (i, 1);
+        },
+        addTask() {
+            console.log (`Hai inserito: ${this.newTask}`);
+
+            this.taskList.push (
+                {
+                    text: this.newTask,
+                    done: false
+                }
+            );
+
+            this.newTask = "";
         }
     }
-
 }).mount("#app");
